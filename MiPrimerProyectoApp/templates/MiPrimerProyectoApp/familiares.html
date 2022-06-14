@@ -1,0 +1,23 @@
+{% load static %}
+
+ <h1 class='list'>Familiares:</h1>
+       
+        <table border="1">
+            <thead>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>Fecha de Nacimiento</th>
+
+        {% for k in data  %}        
+            </thead>
+            <tr>
+                <td><center>{{k.nombre}}</center></td>
+                <td><center>{{k.apellido}}</center></td>
+                <td><center>{{k.edad}}</center></td>
+                <td><center>{{k.fecha_nacimiento}}</center></td>
+            
+            </tr>
+            
+            {% endfor %}
+        </table>
