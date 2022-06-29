@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>familiares lista</title>
+</head>
+<body>
+    <h2>Lista de familiares:</h2>
+
+    <ul>
+        {% for familiar in object_list %}
+            <li>
+                Familiares: {{familiar.nombre}} {{familiar.apellido}} |
+                <a href="{% url 'familiares_detail' familiar.id %}"> Ver</a>
+                <a href="{% url 'familiares_update' familiar.id %}"> Editar</a>
+                <a href="{% url 'familiares_delate' familiar.id %}"> Eliminar</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'familiares_create' %}"> Crear</a>
+</body>
+</html>
