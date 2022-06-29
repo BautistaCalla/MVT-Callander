@@ -1,23 +1,35 @@
+{% extends 'MiPrimerProyectoApp/base.html' %}
 {% load static %}
+{% block contenidoPagina %}
 
- <h1 class='list'>Familiares:</h1>
-       
-        <table border="1">
+        <div class="container px-5">    
+            <table class="table table-striped">
             <thead>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Edad</th>
-                <th>Fecha de Nacimiento</th>
-
-        {% for k in data  %}        
-            </thead>
-            <tr>
-                <td><center>{{k.nombre}}</center></td>
-                <td><center>{{k.apellido}}</center></td>
-                <td><center>{{k.edad}}</center></td>
-                <td><center>{{k.fecha_nacimiento}}</center></td>
-            
+                
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Fecha de Nacimiento</th>
             </tr>
-            
-            {% endfor %}
-        </table>
+        </thead>
+        {% for k in data  %}  
+        <tbody>
+            <tr>
+                
+                <td>{{k.nombre}}</td>
+                <td>{{k.apellido}}</td>
+                <td>{{k.edad}}</td>
+                <td>{{k.fecha_nacimiento}}</td> 
+                <td><a href="{% url 'editar-familiar' k.id %}"> Editar familiar</a></td>
+                <td><a href="{% url 'eliminar-familiar' k.id %}"> Eliminar familiar</a></td>
+                
+             
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    <a href="{% url 'crear-familiar' %}">+ Crear nuevo familiar</a>
+
+
+
+    {% endblock %}

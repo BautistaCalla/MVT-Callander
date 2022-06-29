@@ -1,4 +1,3 @@
-from pyexpat import model
 from django.db import models
 
 # Create your models here.
@@ -10,4 +9,8 @@ class Familiar(models.Model):
     edad = models.IntegerField()
     fecha_nacimiento = models.DateField()
     
-    
+    class Meta:
+       verbose_name_plural = "Familiares"
+
+    def __str__(self) -> str: #MOdificar como se visualiza  
+      return f'{self.nombre} {self.apellido}'

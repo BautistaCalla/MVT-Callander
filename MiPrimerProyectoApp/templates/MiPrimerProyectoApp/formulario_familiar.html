@@ -1,0 +1,23 @@
+{% extends 'MiPrimerProyectoApp/base.html' %}
+{% load static %}
+
+
+{% block tituloPagina %}
+<title>Familiar - App Coder</title> 
+{% endblock %}
+
+{% block contenidoPagina %}
+<h2>Familiar:</h2>
+<form action="" method="post">
+    {% csrf_token %}
+
+    <!-- <p>Nombre: <input type="text" name="Nombre" id=""></p>
+    <p>Apellido: <input type="text" name="Apellido" id=""></p>
+    <p>Edad: <input type="number" name="Edad" id="" min="15"></p>
+    <p>Fecha de Nacimiento: <input type="date" name="Fecha de Nacimiento" id=""></p> -->
+
+        {{form.as_p }}
+
+    <input type="submit" value="Guardar familiar">
+</form>
+{% endblock %}

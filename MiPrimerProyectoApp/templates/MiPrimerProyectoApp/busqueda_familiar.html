@@ -1,0 +1,50 @@
+{% extends 'MiPrimerProyectoApp/base.html' %}
+{% load static %}
+
+
+{% block tituloPagina %}
+<title>Buscar familiar - App Coder</title> 
+{% endblock %}
+
+{% block contenidoPagina %}
+<p>Buscar familiar:<form action="" method="post">
+    {% csrf_token %}
+
+    <p>Nombre: <input type="text" name="Nombre" id=""></p>
+    <!-- <p>Apellido: <input type="text" name="Apellido" id=""></p>
+    <p>Edad: <input type="number" name="Edad" id="" min="15"></p>
+    <p>Fecha de Nacimiento: <input type="date" name="Fecha de Nacimiento" id=""></p> -->
+
+      
+
+    <input type="submit" value="Buscar">
+</form></p>
+
+<p>Resultados para :</p>
+
+<ul>
+    <div class="container px-5">
+        <table class="table table-striped">
+            <thead>
+    
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Fecha de Nacimiento</th>
+                </tr>
+            </thead>
+            {% for k in familiares %}
+            <tbody>
+                <tr>
+    
+                    <td>{{k.nombre}}</td>
+                    <td>{{k.apellido}}</td>
+                    <td>{{k.edad}}</td>
+                    <td>{{k.fecha_nacimiento}}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+</ul>
+
+{% endblock %}
