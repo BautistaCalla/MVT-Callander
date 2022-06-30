@@ -1,10 +1,14 @@
 
+from html.entities import html5
 from django.urls import path
 
 from .views import *
 
 urlpatterns = [
  
+    path('',inicio, name='inicio'),
+    path('login/', login_request, name='login'),
+    path('register/', register_request, name='register'),
     
     path('familiares/', familiares, name= 'familiares'),
     path('crear_familiar/', crear_familiar, name= 'crear-familiar'),
@@ -21,5 +25,3 @@ urlpatterns = [
 
 ]
 
-
- 

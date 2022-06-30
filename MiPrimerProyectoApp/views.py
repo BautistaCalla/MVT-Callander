@@ -13,7 +13,62 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login, authenticate, logout
 
+
+
+
+def login_request(request):
+
+    if request.method == 'POST':
+        
+        form = AuthenticationForm(request=request, data=request.POST)
+        
+        if form.is_valid():
+            
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            
+            if user is not None:
+                login(request, user)
+                return redirect('inicio')
+            else:
+                return redirect('login')
+        else:
+            return redirect('login')   
+            
+    form = AuthenticationForm()
+
+    return render(request, 'MiPrimerProyectoApp/login.html', {'form': form})
+
+def register_request(request):
+    
+    if request.method == 'POST':
+        
+        form = UserCreationForm(request.POST)
+        
+        if form.is_valid():
+            
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1') #es la primer contraseña no la confirmacion
+            
+            form.save() # registramos el usuario
+            
+            user = authenticate(username=username, password=password)
+            
+            if user is not None:
+                login(request, user)
+                return redirect('inicio')
+            
+            return redirect('login')
+        
+        return render(request, 'MiPrimerProyectoApp/register.html', {'form': form})
+    
+    form = UserCreationForm()
+    
+    return render(request, 'MiPrimerProyectoApp/register.html', {'form' : form})
 
 def crear_familiar(request):
     
